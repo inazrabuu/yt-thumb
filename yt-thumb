@@ -1,0 +1,42 @@
+#!/Users/comatose/anaconda3/bin/python
+
+import sys
+import subprocess
+from tool import Extractor 
+from tool import Downloader
+
+def open_file(file_path: str):
+  try:
+    if sys.platform.startswith("darwin"):  
+      subprocess.run(["open", file_path])
+    elif sys.platform.startswith("win32"):  
+      subprocess.run(["start", "", file_path], shell=True)
+    elif sys.platform.startswith("linux"):  
+      subprocess.run(["xdg-open", file_path])
+    else:
+      print("Unsupported OS")
+  except Exception as e:
+    print(f"Error opening file: {e}")
+
+def main():
+  args = sys.argv[1:]
+  
+  if len(args) == 0:
+    print("No url found")
+    return 
+  
+  url = args[0]
+  # url = "https://youtu.be/xZDSqmOnnR0?si=c1a89FFyDitOoPgl"
+  # url = 'https://www.youtube.com/watch?v=yMIYlpZNSmY'
+  e = Extractor(url)
+  code = e.get_youtube_code()
+  d_url = f"https://img.youtube.com/vi/{code}/maxresdefault.jpg"
+
+  d = Downloader(d_url, code)
+  r = d.get()
+
+  if '.jpg' in r:
+    open_file(r)
+
+if __name__ == '__main__':
+  main()
