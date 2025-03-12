@@ -28,9 +28,10 @@ class Extractor:
   def strip_noise(self, url: str, i: int) -> str:
     url_split = url.split('/')
     
-    code = url_split[3]
+    code = url_split[3] if url_split[3] != 'shorts' else url_split[4]
     if i == 0:
-      code = code.split('=')[1]
+      code_split = code.split('=')
+      code = code_split[1] if len(code_split) > 1 else code_split[0]
     else:
       code = code.split('?')[0]
 
