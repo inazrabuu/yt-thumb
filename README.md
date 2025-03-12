@@ -4,7 +4,7 @@
 ## Installation
 - install python3
 - clone this repository
-- go inside `yt-thumb` directory, created after the clone
+- enter `yt-thumb` directory, created after the clone
 - execute ```chmod +x yt-thumb```
 
 ## Usage
@@ -20,4 +20,4 @@ yt-thumb "https://youtu.be/9asd8f98a
 yt-thumb "https://youtube.com/shorts/9asd8f98a"
 ```
 
-For global usage, you can move the content of directory into your `lib` directory, or include this directory in your `PATH` variable.
+For global usage, move the content of directory into global `lib` directory (ex: `/usr/local/lib` in mac) or include this directory in your `PATH` variable. Execute `yt-thumb` afterward.
