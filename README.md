@@ -4,8 +4,8 @@
 ## Installation
 - install python3
 - clone this repository
-- go inside yt-thumb directory, created after the clone
-- chmod +x yt-thumb
+- go inside `yt-thumb` directory, created after the clone
+- execute ```chmod +x yt-thumb```
 
 ## Usage
 Run the yt-thumb file `./yt-thumb` and followed by the desired youtube URL
