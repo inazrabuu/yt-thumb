@@ -19,8 +19,13 @@ def open_file(file_path: str):
     print(f"Error opening file: {e}")
 
 def main():
-  parser = argparse.ArgumentParser(description="Simple Youtube Thumbnail Downloader")
+  parser = argparse.ArgumentParser(
+            description="Simple Youtube Thumbnail Downloader",
+            epilog="Example usage:\n yt-thumb 'https://youtube.com/watch?v=x3fas9d8f7'",
+            formatter_class=argparse.RawTextHelpFormatter
+          )
   parser.add_argument("url", help="The Youtube Video's URL")
+  parser.add_argument("--output", "-o", help="Output filename (default: <yt_ID>.jpg)")
 
   args = parser.parse_args()
   
@@ -29,8 +34,10 @@ def main():
   code = e.get_youtube_code()
   d_url = f"https://img.youtube.com/vi/{code}/maxresdefault.jpg"
 
-  d = Downloader(d_url, code)
-  r = d.get()
+  file_name = code if args.output is None else args.output
+
+  d = Downloader(d_url, file_name)
+  r = d.get(file_name)
 
   if '.jpg' in r:
     open_file(r)
