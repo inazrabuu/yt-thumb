@@ -2,8 +2,8 @@
 
 import sys
 import subprocess
-from tool import Extractor 
-from tool import Downloader
+import argparse
+from tool import Extractor, Downloader
 
 def open_file(file_path: str):
   try:
@@ -19,15 +19,12 @@ def open_file(file_path: str):
     print(f"Error opening file: {e}")
 
 def main():
-  args = sys.argv[1:]
+  parser = argparse.ArgumentParser(description="Simple Youtube Thumbnail Downloader")
+  parser.add_argument("url", help="The Youtube Video's URL")
+
+  args = parser.parse_args()
   
-  if len(args) == 0:
-    print("No url found")
-    return 
-  
-  url = args[0]
-  # url = "https://youtu.be/xZDSqmOnnR0?si=c1a89FFyDitOoPgl"
-  # url = 'https://www.youtube.com/watch?v=yMIYlpZNSmY'
+  url = args.url
   e = Extractor(url)
   code = e.get_youtube_code()
   d_url = f"https://img.youtube.com/vi/{code}/maxresdefault.jpg"
