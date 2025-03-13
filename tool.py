@@ -59,4 +59,3 @@ class Downloader:
       print(ret_val)
 
     return ret_val
-
