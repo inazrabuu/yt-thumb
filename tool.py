@@ -44,9 +44,9 @@ class Downloader:
     self.url = url
     self.name = name
 
-  def get(self):
+  def get(self, file_name):
     response = requests.get(self.url, stream=True)
-    img_name = f"{self.name}.jpg"
+    img_name = f"{file_name}.jpg"
 
     if response.status_code == 200:
       with open(img_name, "wb") as f:
@@ -59,4 +59,3 @@ class Downloader:
       print(ret_val)
 
     return ret_val
-
